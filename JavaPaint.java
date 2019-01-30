@@ -9,8 +9,11 @@ import java.awt.event.FocusListener;
 import java.awt.event.FocusEvent;
 import javax.swing.JFrame;
 import java.awt.Font;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class JavaPaint extends JPanel implements KeyListener, ActionListener, FocusListener
+public class JavaPaint extends JPanel implements KeyListener, ActionListener, FocusListener, MouseListener
 {
    //Array of rects in pallet
    Pallet pallets[] = new Pallet[12];
@@ -38,6 +41,7 @@ public class JavaPaint extends JPanel implements KeyListener, ActionListener, Fo
       addKeyListener(this);
       setFocusable(true);
       setFocusTraversalKeysEnabled(false);
+      addMouseListener(this);
    }
    
    public void paint(Graphics g)
@@ -46,7 +50,8 @@ public class JavaPaint extends JPanel implements KeyListener, ActionListener, Fo
       canvas(g); //sets the canvas (background + pallet)
       
       if(mousePressed)
-         draw(); //calls the draw class which ... draws
+         draw(g); //calls the draw class which ... draws
+     
       if(clear)
       {
          addBackground(g); //clears the screen
@@ -58,7 +63,14 @@ public class JavaPaint extends JPanel implements KeyListener, ActionListener, Fo
       g.setColor(background);
       g.fillRect(0,0,fW,fH-100);
    }
-   public void draw(){}
+   public void draw()
+   {
+     if(yMouse<600)
+     {
+      for(int k =0;k<pallets.length;k++)
+      {
+          if(xMouse > pallets[k].x && xMouse < pallets[k].x+67)
+            changeColor
    public void clear(){}
   
    //sets the canvas (background + pallet)
@@ -71,12 +83,13 @@ public class JavaPaint extends JPanel implements KeyListener, ActionListener, Fo
          pallets[k] = new Pallet(width*k,600,width, fH);
          
       }
-      int count = 0; //a sort of manual counter
+      
       
       //the bottom part of the canvas - colors
       for(int k = 0; k < 12;k++)
       {
          changeColor(k, g); //utilizes the changeColor class with the corresponding numbers
+         
          if(k>=9) //everything but the last three boxes(the last three are the size ones)
             g.drawRect(pallets[k].x,pallets[k].y,pallets[k].width,pallets[k].height);
          else
@@ -94,8 +107,10 @@ public class JavaPaint extends JPanel implements KeyListener, ActionListener, Fo
       
    }
    
-   public Color getColor(){
-      return color;}//returns the color to set the cursor color
+   public Color getColor()
+   {
+      return color;
+      }//returns the color to set the cursor color
    
    /*
    *@param an integer corresponding to a color:
@@ -162,6 +177,35 @@ public class JavaPaint extends JPanel implements KeyListener, ActionListener, Fo
    
    @Override
    public void focusLost(FocusEvent e){}
+   @Override
+   public void mouseClicked(MouseEvent e) {
+      xMouse = e.getX();
+      yMouse = e.getY();
+      mousePressed = !mousePressed;
+      
+   
+   }
+
+   @Override
+   public void mouseExited(MouseEvent e) {
+   
+   }
+
+   @Override
+   public void mouseEntered(MouseEvent e) {
+   
+   }
+
+   @Override
+   public void mousePressed(MouseEvent e) {
+   
+   }
+
+   @Override
+   public void mouseReleased(MouseEvent e) {
+   
+      
+   }
    
    
 }
