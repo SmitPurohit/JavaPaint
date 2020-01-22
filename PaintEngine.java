@@ -4,8 +4,9 @@ import java.awt.image.BufferedImage;
 import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.awt.Point;
+import java.applet.Applet;
 
-public class PaintEngine
+public class PaintEngine 
 {
    public static void main(String args[])
    {

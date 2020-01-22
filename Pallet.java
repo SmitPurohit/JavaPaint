@@ -1,4 +1,5 @@
-//the purpose of this class is to create objects for the pallet, allowing us to iterate through them
+//the purpose of this class is to create objects for the pallet, allowing us to iterate through the colors/sizes
+
 
 public class Pallet
 {
