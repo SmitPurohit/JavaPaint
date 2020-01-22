@@ -67,18 +67,6 @@ public class JavaPaint extends JPanel implements KeyListener, ActionListener, Fo
    
    public void paint(Graphics g)
    {    
-      if(t){
-         if(mouseClicked)
-         {
-            enterPressed = false;
-            drawText(g);
-            mouseClicked = false;
-         }
-         if(enterPressed)
-         {
-            g.setColor(color);
-            g.drawText(
-         
       canvas(g);
       if(save)
          save(g);
